@@ -9,7 +9,7 @@ const playAgainButton = document.querySelector(".play-again");
 const word = "magnolia";
 const guessedLetters = [];
 
-const UpdateWordInProgress = function (word) {
+const makeDots = function (word) {
     let hiddenWord = "";
     for (let element in word) {
         hiddenWord += "●";
@@ -18,7 +18,7 @@ const UpdateWordInProgress = function (word) {
     wordInProgress.innerText = hiddenWord;
 };
 
-UpdateWordInProgress(word);
+makeDots(word);
 
 guessButton.addEventListener("click", function (e) {
     e.preventDefault();
@@ -49,7 +49,41 @@ const makeGuess = function (letter) {
         message.innerText = "You already guessed that letter, give it another go.";
       } else {
         guessedLetters.push(uppercaseLetter);
-        console.log(guessedLetters)
+        console.log(guessedLetters);
+        pageUpdate();
+        updateWordInProgress(guessedLetters);
       }
 };
+
+const pageUpdate = function () {
+    ul.innerHTML = "";
+    guessedLetters.forEach( function (letter) {
+        let li = document.createElement("li");
+        li.innerText = letter;
+        ul.append(li);
+    });
+};
+
+const updateWordInProgress = function (guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    const updatedArray = [];
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            updatedArray.push(letter);
+        } else {
+            updatedArray.push("●");
+        }
+    }
+    wordInProgress.innerText = updatedArray.join("");
+    winner();
+};
+
+const winner = function () {
+    if (wordInProgress.innerText === word.toUpperCase()) {
+        message.classList.add("win");
+        message.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+    }
+};
+
 

@@ -20,8 +20,8 @@ body {
 }
 
 .logo {
-  width: 40%;
-  max-width: 484px;
+  width: 27%;
+  height: 400px;
 }
 
 h1 {
@@ -31,7 +31,7 @@ h1 {
   font-family: "Unlock", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 44px;
+  font-size: 22px;
   text-align: center;
 }
 

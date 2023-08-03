@@ -40,20 +40,22 @@ guessButton.addEventListener("click", function (e) {
   inputLetter.value = "";
   message.innerText = "";
   const result = checkInput(inputValue);
-  console.log(result);
-  makeGuess(result);
+  if (result) {
+    makeGuess(result);
+  }
 });
 
 const checkInput = function (input) {
   const acceptedLetter = /[a-zA-Z]/;
   if (input.length === 0) {
     message.innerText = "You gotta enter something to play!";
-  } else if (input.length >= 2) {
+  } else if (input.length !== 1) {
     message.innerText = "Only one letter at a time, my friend.";
   } else if (!input.match(acceptedLetter)) {
     message.innerText = "That's not a letter and you know it!";
+  } else {
+    return input;
   }
-  return input;
 };
 
 const makeGuess = function (letter) {
@@ -62,7 +64,7 @@ const makeGuess = function (letter) {
     message.innerText = "You already guessed that letter, give it another go.";
   } else {
     guessedLetters.push(uppercaseLetter);
-    // console.log(guessedLetters);
+    console.log(guessedLetters);
     pageUpdate();
     guessesRemaining(uppercaseLetter);
     updateWordInProgress(guessedLetters);

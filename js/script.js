@@ -62,7 +62,7 @@ const makeGuess = function (letter) {
     message.innerText = "You already guessed that letter, give it another go.";
   } else {
     guessedLetters.push(uppercaseLetter);
-    console.log(guessedLetters);
+    // console.log(guessedLetters);
     pageUpdate();
     guessesRemaining(uppercaseLetter);
     updateWordInProgress(guessedLetters);
